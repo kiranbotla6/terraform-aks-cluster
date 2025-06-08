@@ -11,4 +11,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "this" {
   enable_auto_scaling   = var.enable_auto_scaling
   min_count             = var.min_count
   max_count             = var.max_count
+  upgrade_settings {
+    drain_timeout_in_minutes      = 0
+    max_surge                     = "10%"
+    node_soak_duration_in_minutes = 0
+  }
 }
