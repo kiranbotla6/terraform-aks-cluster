@@ -36,3 +36,7 @@ module "aks" {
   tags                = var.tags
 }
 
+resource "azurerm_subnet_network_security_group_association" "aks_subnet_assoc" {
+  subnet_id                 = module.vnet.subnet_ids["aks"]
+  network_security_group_id = data.azurerm_network_security_group.existing_aks_nsg.id
+}
